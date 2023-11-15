@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="open">打开新世界</button>
+    <button class="close">关闭</button>
+
+    <script>
+      const json = `
+      height=50px,
+      width=50px
+      `;
+      document.querySelector('.open').addEventListener('click', function () {
+        const open = window.open('http://www.baidu.com', '_blank', json);
+        open.moveTo(500, 500);
+      });
+      document.querySelector('.close').addEventListener('click', function () {
+        window.close();
+      });
+    </script>
+  </body>
+</html>

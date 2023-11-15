@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- DOM节点的获取 -->
+  <p class="hello" title="你好" id="box">
+    <span>
+      我是大哥
+    </span>
+    <span class="child">
+      我是儿子
+    </span>
+    <span>
+      我是小妹
+    </span>
+    hello,world
+  </p>
+  <div class="hello" id="divBox">
+    我是一个div
+  </div>
+  <script>
+    var box = document.getElementById('box')
+    var boxQuery = document.querySelector('.hello')
+    console.log('here>>>', boxQuery, 'boxQuery');
+    var boxQueryAll = document.querySelectorAll('.hello')
+    console.log('here>>>', boxQueryAll, 'boxQueryAll');
+
+    console.log('here>>>', boxQuery.nodeName, 'boxQuery.nodeName');
+    console.log('here>>>', boxQuery.nodeType, 'boxQuery.nodeName');
+    console.log('here>>>', boxQuery.textContent, 'boxQuery.nodeName');
+
+    var child = document.querySelector('.child')
+    var childParent = child.parentNode;
+    console.log('here>>>', childParent, 'childParent');
+    var childBrother = child.previousSibling;
+    console.log('here>>>', childBrother, 'childBrother');
+    var childBrotherT = child.previousElementSibling;
+    console.log('here>>>', childBrotherT, 'childBrotherT');
+
+    // const getEventListener = function(on){
+    //   return function(){
+    //     console.log('here>>>', `我被${on}了`, '我被${on}了');
+    //   }
+    // }
+
+  
+    // box.onclick = getEventListener('点击');
+    // box.ondblclick = getEventListener('双击');
+    // box.oncopy = getEventListener('复制');
+    // box.onmouseenter = getEventListener('进来')
+    // box.onmouseleave = getEventListener('移除')
+
+    // console.log('here>>>',Object.getPrototypeOf(box), 'box');
+
+
+
+    // DOM节点的动态创建
+    var div = document.createElement('div');
+    div.innerText = '我是动态添加的div'
+    box.appendChild(div)
+    box.insertBefore(div,child)
+    console.log('here>>>', div, 'div');
+  </script>
+</body>
+</html>

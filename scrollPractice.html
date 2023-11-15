@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#box {
+				width: 500px;
+				height: 100px;
+				border: 1px solid #db4168;
+				margin: 0 auto;
+				display: flex;
+				overflow: hidden;
+			}
+			ul,
+			li {
+				list-style: none;
+			}
+			ul {
+				display: flex;
+				transition: all 0.3s;
+			}
+			li {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #0bfd0b;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 100px;
+			}
+			.active {
+				border-color: aqua;
+				background-color: antiquewhite;
+				color: rgb(253, 252, 251);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li data-index="1">1</li>
+				<li data-index="2">2</li>
+				<li data-index="3" class="active">3</li>
+				<li data-index="4">4</li>
+				<li data-index="5">5</li>
+				<li data-index="6">6</li>
+				<li data-index="7">7</li>
+				<li data-index="8">8</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		var box = document.querySelector('#box');
+		var lis = document.querySelectorAll('li');
+		var ul = document.querySelector('ul');
+		var showLen = 5;
+		var max = lis.length - showLen;
+
+		box.addEventListener(
+			'click',
+			function (event) {
+				var currentLi = event.target;
+				lis.forEach(function (item) {
+					if (item.classList.contains('active')) {
+						item.classList.remove('active');
+					}
+				});
+
+				currentLi.classList.add('active');
+
+				var liIndex = currentLi.dataset.index;
+				// console.log('here>>>', currentLi.dataset, 'liIndex');
+				var index = liIndex - 3; //实际滑动变量
+
+				if (index > 0) {
+					index = index > max ? max : index;
+					ul.style.transform = `translateX(-${index * 100}px)`;
+				} else {
+					ul.style.transform = `translateX(0px)`;
+				}
+			},
+			false
+		);
+	</script>
+</html>

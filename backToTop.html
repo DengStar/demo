@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			section {
+				height: 400px;
+				line-height: 400px;
+				text-align: center;
+				font-size: 30px;
+				border: 1px solid darkgreen;
+			}
+			.rocket {
+				width: 100px;
+				height: 200px;
+				position: fixed;
+				bottom: 30px;
+				right: 80px;
+				cursor: pointer;
+			}
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<section>1</section>
+			<section>2</section>
+			<section>3</section>
+			<section>4</section>
+		</div>
+
+		<img
+			class="rocket hidden"
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrDGfGHg9JLmJrK8LErEZQI5Pg9X3J9Bs9sw&usqp=CAU"
+			alt=""
+		/>
+
+		<script>
+			const rocket = document.querySelector('.rocket');
+			window.addEventListener('scroll', function (event) {
+				const top = document.body.scrollTop || document.documentElement.scrollTop;
+				if (top > 200) {
+					rocket.classList.remove('hidden');
+				} else if (top < 190 && !rocket.classList.contains('hidden')) {
+					rocket.classList.add('hidden');
+				}
+			});
+			rocket.addEventListener('click', function () {
+				document.documentElement.scrollTop = 0;
+			});
+		</script>
+	</body>
+</html>

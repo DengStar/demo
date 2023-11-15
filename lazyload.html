@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="wrap">
+			<div>
+				<img
+					src="https://pbs.twimg.com/media/D75IKUvU8AAT40I.jpg"
+					data-src="https://pic.52112.com/180717/JPG-180717_331/qrJmTIiHDY_small.jpg"
+					alt=""
+				/>
+			</div>
+			<div>
+				<img
+					src="https://pbs.twimg.com/media/D75IKUvU8AAT40I.jpg"
+					data-src="https://pic.52112.com/180717/JPG-180717_331/riKQ8dic25_small.jpg"
+					alt=""
+				/>
+			</div>
+			<div>
+				<img
+					src="https://pbs.twimg.com/media/D75IKUvU8AAT40I.jpg"
+					data-src="https://pic.52112.com/180717/JPG-180717_331/2h1MLQXh3h_small.jpg"
+					alt=""
+				/>
+			</div>
+		</section>
+
+		<script>
+			const imgs = document.querySelectorAll('img[data-src]');
+			const winHeight = window.innerHeight; //视口高度
+			window.addEventListener('scroll', function () {
+				imgs.forEach(function (item, index) {
+					const top = getTop(item);
+					if (top < winHeight + 60) {
+						loadImg(item, index);
+					}
+				});
+			});
+			function loadImg(img, index) {
+				const src = img.dataset.src;
+				img.src = src;
+
+				imgs.splice(index, 1);
+			}
+			function getTop(img) {
+				return img.getBoundingClientRect().top;
+			}
+		</script>
+	</body>
+</html>

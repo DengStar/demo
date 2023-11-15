@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.box {
+				width: 500px;
+				height: 100px;
+				border: 1px solid #de4578;
+				overflow: hidden;
+				margin: 0 auto;
+				/* display: flex; */
+			}
+			ul,
+			li {
+				list-style: none;
+			}
+			ul {
+				display: flex;
+				transition: transform 0.3s;
+				/* transform: translateX(-100px); */
+			}
+			li {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #12de56;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 100px;
+				flex-shrink: 0;
+				transition: background-color 0.8s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</div>
+		<script>
+			var box = document.querySelector('.box');
+			var lis = document.querySelectorAll('li');
+			const lisArr = [...lis];
+			const ul = document.querySelector('ul');
+			const max = lisArr.length - 5;
+
+			box.addEventListener(
+				'click',
+				function (event) {
+					let index = lisArr.indexOf(event.target);
+					// console.log('here>>>', event.target, 'event.target');
+
+					lisArr.forEach(element => {
+						element.style.backgroundColor = '#fff';
+					});
+					event.target.style.backgroundColor = '#de4545';
+
+					// ul.style.backgroundColor='#fff';
+
+					// if (index > 2 && index < max) {
+					// 	ul.style.transform = `translateX(-${(index - 2) * 100}px)`;
+					// }
+
+					if (index > 2) {
+						index = index - 2 > max ? max : index - 2;
+						ul.style.transform = `translateX(-${index * 100}px)`;
+					} else {
+						ul.style.transform = 'translateX(0px)';
+					}
+				},
+				false
+			);
+
+			// const fn = (e, i) => {
+			// 	console.log('here>>>', e, i, 'e,i,arr');
+			// };
+			// const arr = [1, 2, 3, 4, 5, 6];
+			// fn(arr[0], 0, arr); //0,1,[1,2,3,4]
+			// fn(arr[1], 1, arr);
+			// fn(arr[2], 2, arr);
+			// fn(arr[3], 3, arr);
+
+			// arr.forEach((e, i) => {
+			// 	console.log('here>>>', e, i, 'e,i,arr');
+			// });
+		</script>
+	</body>
+</html>
